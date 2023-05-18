@@ -1,0 +1,10 @@
+# don't upload data files
+*.csv
+
+#don't save Jupyter Notebooks
+.ipynb_checkpoints
+
+#Excel files
+*.xlsx
+
+.DS_Store
