@@ -3,15 +3,18 @@
 
 ### Project Overview
 
-``` The project consists on a series of algorithms to predict the seller churn of a Latin
-	American early stage startup. That operates a B2B2C social commerce marketplace, where 
-	sellers source products on a mobile app and offer them on social media, while the 
-	company takes care of the product sourcing, delivery, and payment collection/delivery
-	thereby eliminating inventory risk in a portfolio of wholesale products.
-	Due to the nature of the business, seller churn (not placing an order for 30 days)is
-	quite common. 
-	This model will predict the seller churn, defined as sellers with 1>= orders placed
-	after june 01 2021, that did not placed an order after may 28 2023.   ```
+``` 
+The project consists on a series of algorithms to predict the seller churn of a Latin
+American early stage startup. That operates a B2B2C social commerce marketplace, where 
+sellers source products on a mobile app and offer them on social media, while the 
+company takes care of the product sourcing, delivery, and payment collection/delivery
+thereby eliminating inventory risk in a portfolio of wholesale products.
+Due to the nature of the business, seller churn (not placing an order for 30 days)is
+quite common. 
+This model will predict the seller churn, defined as sellers with 1>= orders placed
+after june 01 2021, that did not placed an order after may 28 2023.   
+
+```
 
 ### Walkthrough Demo
 
