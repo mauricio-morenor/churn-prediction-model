@@ -1,0 +1,46 @@
+-- Capstone second iteration:
+-- Total sellers 
+-- 648141 sellers
+
+-- Iteration 2: total sellers and orders
+SELECT
+    s.ID AS sellerID,
+    DATE_TRUNC('day', s.created_at) AS seller_created_at,
+    COUNT(DISTINCT o.order_number) AS total_orders,
+    CAST(COUNT(DISTINCT CASE WHEN o.state IN ('Completed', 'Distribution', 'Created', 'Dispatched', 'In_process', 'Initial', 'Ordered') THEN o.order_number END) AS FLOAT) /
+        NULLIF(COUNT(DISTINCT o.order_number), 0) AS effective_ratio,
+    CAST(COUNT(DISTINCT CASE WHEN o.state IN ('RTO_Completed', 'RTO_Delivered', 'RTO_Started') THEN o.order_number END) AS FLOAT) /
+        NULLIF(COUNT(DISTINCT o.order_number), 0) AS rto_ratio,
+    CAST(COUNT(DISTINCT CASE WHEN o.state IN ('Return_Completed', 'Return_Delivered', 'Return_Distribution', 'Return_Started') THEN o.order_number END) AS FLOAT) /
+        NULLIF(COUNT(DISTINCT o.order_number), 0) AS return_ratio,
+    CAST(COUNT(DISTINCT CASE WHEN o.state IN ('Cancelled') THEN o.order_number END) AS FLOAT) /
+        NULLIF(COUNT(DISTINCT o.order_number), 0) AS cancelled_ratio,
+    COUNT(DISTINCT o.department) AS departments_sold,
+    COUNT(DISTINCT o.client_id) AS number_of_clients,
+    AVG(CASE WHEN o.state IN ('Completed', 'Distribution', 'Created', 'Dispatched', 'In_process', 'Initial', 'Ordered')
+            THEN DATE_PART('day', DATE_TRUNC('day', o.status_date) - DATE_TRUNC('day', o.created_at))
+        END) AS avg_effective_delivery_days,
+    SUM(CASE WHEN o.state IN ('Completed', 'Distribution', 'Created', 'Dispatched', 'In_process', 'Initial', 'Ordered')
+            THEN o.earnings
+        END) AS total_effective_earnings,
+    AVG(CASE WHEN o.state IN ('Completed', 'Distribution', 'Created', 'Dispatched', 'In_process', 'Initial', 'Ordered')
+            THEN o.earnings
+        END) AS avg_effective_earnings,
+    AVG(o.client_price) AS avg_client_price,
+    AVG(o.shipping) AS avg_shipment_cost,
+    SUM(o.discount) AS total_discount,
+    COUNT(DISTINCT CASE WHEN o.state IN ('Completed', 'Distribution', 'Created', 'Dispatched', 'In_process', 'Initial', 'Ordered') AND DATE_TRUNC('month', o.created_at) = '2022-11-01' THEN o.order_number END) as effective_orders_november,
+    COUNT(DISTINCT CASE WHEN o.state IN ('Completed', 'Distribution', 'Created', 'Dispatched', 'In_process', 'Initial', 'Ordered') AND DATE_TRUNC('month', o.created_at) = '2022-12-01' THEN o.order_number END) as effective_orders_december,
+    COUNT(DISTINCT CASE WHEN o.state IN ('Completed', 'Distribution', 'Created', 'Dispatched', 'In_process', 'Initial', 'Ordered') AND DATE_TRUNC('month', o.created_at) = '2023-01-01' THEN o.order_number END) as effective_orders_january,
+    COUNT(DISTINCT CASE WHEN o.state IN ('Completed', 'Distribution', 'Created', 'Dispatched', 'In_process', 'Initial', 'Ordered') AND DATE_TRUNC('month', o.created_at) = '2023-02-01' THEN o.order_number END) as effective_orders_february
+FROM new_app.order AS o
+LEFT JOIN new_app.seller as s
+    ON o.seller_id = s.id
+WHERE DATE(s.created_at) >= '2022-08-01'
+GROUP BY s.ID, seller_created_at;
+
+-- Iteration 2: total sellers and orders
+
+
+
+
