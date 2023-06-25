@@ -11,30 +11,11 @@ company takes care of the product sourcing, delivery, and payment collection/del
 thereby eliminating inventory risk in a portfolio of wholesale products.
 Due to the nature of the business, seller churn (not placing an order for 30 days)is
 quite common. 
-This model will predict the seller churn, defined as sellers with 1>= orders placed
-after june 01 2021, that did not placed an order after may 28 2023.   
+This model consists of a churn predictor algorithm that segments sellers who are likely to churn (i.e., not place any orders) each month. This was performed in two (seller retention starting June 2022, y values removed)  iterations, the first one analyzing sellers created after June 2021 and the second one, for sellers created after October 2022. For this document I will focus only on the second one, which is most relevant for the company.
 
 ```
 
-### Walkthrough Demo
-
-...
-...
-...
-
-### Project Flowchart
-
-...
-...
-...
-
-### Project Organization
-
-...
-...
-...
-
-* `data` 
+### Project Data
    ``` - seller ID:
     		- Type: int
 			- seller unique ID
@@ -107,19 +88,18 @@ after june 01 2021, that did not placed an order after may 28 2023.
 			- total number of credits used by the seller
 
 * `model`
-    - joblib dump of final model / model object
+    - joblib dump of final model, containing the final XGBoost and Random Forest
 
 * `notebooks`
-    - contains all final notebooks involved in the project
+    - 00 SQL queries to extract the data from the dump
+    - 001 Data wrangilng for both iterations
+    - 002 EDA for iteration 1
+    - 003 Pre-processing notebook
+    - 004 Modelling
+    - Model evaluation
 
 * `reports`
     - contains final report which summarises the project
-
-* `references`
-    - contains papers / tutorials used in the project
-
-* `src`
-    - Contains the project source code (refactored from the notebooks)
 
 * `.gitignore`
     - Part of Git, includes files and folders to be ignored by Git version control
@@ -133,19 +113,10 @@ after june 01 2021, that did not placed an order after may 28 2023.
 * `README.md`
     - Project landing page (this page)
 
-* `LICENSE`
-    - Project license
 
 ### Dataset
 
-...
-...
-...
+Dataset link: https://drive.google.com/drive/folders/1QGwsvxgVX4mRjP8l4jhbcIZhQIKBwCy1?usp=sharing
 
-### Credits & References
-
-...
-...
-...
 
 --------
