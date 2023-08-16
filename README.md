@@ -15,6 +15,21 @@ This model consists of a churn predictor algorithm that segments sellers who are
 
 ```
 
+### Results 
+```
+The top-performing models were Random Forest and XGBoost. While they had similar performance overall, XGBoost was chosen as the preferred model due to its computational efficiency (less depth layers) and an improvement of 200 basis points in specificity for the negative class.
+
+The final model achieved an accuracy of 94%, recall of 98%, 94% precision. For the negative class, the model achieved a true negative ratio of 75% and a negative predicted value of 91%. These results indicate that the model effectively classifies instances, with a high rate of correctly identifying positive cases and a satisfactory rate of avoiding false negatives.
+
+Various analyses were conducted to gain insights into the misclassifications labeled by the model. One approach involved hypothesis testing for different groups of misclassified sellers, because there was a pattern of misclassifications. It was observed that certain metrics, such as the effective order ratio, had significantly higher average scores among the misclassified sellers. However, since this metric is a positive indicator, it should not be considered indicative of churn. This suggests that in future iterations, additional app-related engagement features should be incorporated to better understand these patterns.
+
+On the other hand, another type of misclassification was identified, where the average total effective earnings were notably higher for the false positive cases. This is an area that should have been addressed by the model to avoid misclassifying sellers with higher earnings as churned. This finding highlights the need to refine the model's performance in accurately identifying such cases.
+
+
+During the SHAP analysis visualizations, additional interesting patterns were uncovered. One notable finding was the significant impact of the number of vouchers given to a seller, which proved to be highly indicative of churn. A hypothesis that could explain this phenomenon is that the vouchers are provided in response to returns or cancellations, suggesting negative experiences for the sellers. However, further analysis is required to validate and explore this hypothesis in more depth.
+
+```
+
 ### Project Data
    ``` - seller ID:
     		- Type: int
@@ -116,7 +131,7 @@ This model consists of a churn predictor algorithm that segments sellers who are
 
 ### Dataset
 
-Dataset link: https://drive.google.com/drive/folders/1QGwsvxgVX4mRjP8l4jhbcIZhQIKBwCy1?usp=sharing
+Since it its a private company, the data is not included in this public repo
 
 
 --------
